@@ -68,8 +68,8 @@ isBrewInstalled=$(which brew)
 if [ "$isQemuInstalled" != "" ] && [ "$isBrewInstalled" != "" ]
 then #Qemu & Brew are installed
     echo "Pkg qemu already exists"
-elif [ "$isBrewInstalled" == "" ] &&  [ "$isQemuInstalled" != "" ]
-    then #brew is installed, use it to install Qemu
+elif [ "$isBrewInstalled" != "" ] &&  [ "$isQemuInstalled" == "" ]
+    then #brew is installed, qemu is not installed, use brew to install Qemu
         brew install qemu
     else
         echo "Installing Homebrew..."
