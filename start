@@ -1,0 +1,28 @@
+#!/bin/bash
+
+
+homebrew_check=$(which brew)
+p7zip_check=$(which 7z)
+
+if [ "${homebrew_check}" == "" ]; then
+    echo "brew is not installed"
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
+
+if [ "${p7zip_check}" == "" ]; then
+    brew install p7zip
+fi
+
+# download the main img
+
+if [ ! -f "ece391_sp15.zip" ];then
+    wget "http://duke8253.net/ece391/ece391_sp15.zip"
+    7z x ece391_sp15.zip
+    echo "Unzip finished"
+fi
+
+cp setup_mac ./ece391/setup_mac
+cd ece391
+wget "http://duke8253.net/ece391/qemu_mac.zip"
+7z x qemu_mac.zip
+./setup_mac

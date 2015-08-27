@@ -6,15 +6,13 @@
 
 # After Mapping, ece391_* dirs will be used as these Volumes
 
-echo "Welcome to ece391 auto setup for OS X."
-echo "Proudly created by Han Yan, Yifei Teng, Yu Wang."
-
 # check if connected with campus WiFi
 currentWiFi=$(/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | awk '/ SSID/ {print substr($0, index($0, $2))}'
 )
 if [ "$currentWiFi" = "" ]
 then
     echo "No WiFi connection"
+    exit 1
 else
     if [ "$currentWiFi" = "IllinoisNet" ]||[ "$currentWiFi" = "UIUCnet" ];
     then # wow your are in campus wifi
@@ -31,12 +29,21 @@ fi
 # connect to VPN
 if [ "$VPNyn" = "y" ]||[ "$VPNyn" = "Y" ]
 then
-    open /Applications/Cisco/Cisco\ AnyConnect\ Secure\ Mobility\ Client.app
-    sleep 2
+cd /Applications
+    if [  -d "Cisco" ];then
+        echo "open Cisco AnyConnect"
+        open /Applications/Cisco/Cisco\ AnyConnect\ Secure\ Mobility\ Client.app
+        sleep 2
+        echo
+    else
+        echo "Please install Cisco AnyConnect first"
+        open https://www.cites.illinois.edu/vpn/
+        sleep 2
+    fi
 fi
 # end VPN
 
-echo ""
+echo "..."
 echo "Network Checking Succeed."
 echo "Please enter your netid:"
 read yournetid
@@ -60,23 +67,6 @@ mount -t smbfs "//${yournetid}@engr-ece-391.engr.illinois.edu/team/ece391/${your
 echo "Mount ece391_Team successfully."
 echo "Your Shared Volume team/$yournetid is mapped to dir ece391_Team."
 # end Mount
-
-# check is qemu installed
-isQemuInstalled=$(which qemu-img)
-isBrewInstalled=$(which brew)
-
-if [ "$isQemuInstalled" != "" ] && [ "$isBrewInstalled" != "" ]
-then #Qemu & Brew are installed
-    echo "Pkg qemu already exists"
-elif [ "$isBrewInstalled" != "" ] &&  [ "$isQemuInstalled" == "" ]
-    then #brew is installed, qemu is not installed, use brew to install Qemu
-        brew install qemu
-    else
-        echo "Installing Homebrew..."
-        ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-        brew install qemu
-fi
-# end check
 
 
 
