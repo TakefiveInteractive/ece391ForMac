@@ -1,0 +1,4 @@
+#!/bin/bash
+
+diskutil unmount ~/ece391_Team/
+diskutil unmount ~/ece391_Classes/

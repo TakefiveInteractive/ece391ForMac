@@ -1,0 +1,55 @@
+#!/bin/bash
+
+# instdir05.engr.illinois.edu/classes/ece391 = V:\ece391
+# engr-ece-391.engr.illinois.edu/team/ece391/<your NETID> = Z:
+# /Volumes = U: (x)
+
+# After Mapping, ece391_* dirs will be used as these Volumes
+
+echo "Welcome to ece391 auto setup for OS X."
+echo "Proudly created by Han Yan, Yifei Teng, Yu Wang."
+echo "Please enter your netid:"
+read yournetid
+cd ~
+
+# Mount ece391_Classes&ece391_Team
+if [ ! -d "ece391_Classes" ]; then # check if the dir exists
+    mkdir ece391_Classes
+    echo "Created dir ece391_Classes"
+fi
+mount -t smbfs //$yournetid@instdir05.engr.illinois.edu/classes/ece391 ece391_Classes
+echo "Mount ece391_Classes successfully."
+echo "Your Shared Volume ece391 is mapped to dir ece391_Classes."
+if [ ! -d "ece391_Team" ]; then # check if the dir exists
+    mkdir ece391_Team
+    echo "Created dir ece391_Classes"
+fi
+mount -t smbfs //$yournetid@engr-ece-391.engr.illinois.edu/team/ece391/$yournetid ece391_Team
+echo "Mount ece391_Team successfully."
+echo "Your Shared Volume team/$yournetid is mapped to dir ece391_Team."
+# end Mount
+
+# check is qemu installed
+isQemuInstalled=$(which qemu-img)
+if [ "$isQemuInstalled" != "" ]; then #check if the dir exists
+    echo "Pkg qemu already exists"
+else
+    brew install qemu
+fi
+# end check
+
+
+
+
+#devel.lnk = C:\qemu-1.5.0-win32-sdl\qemu-system-i386w.exe -hda "Z:\vm\devel.qcow" -m 512 -name devel
+#test_debug.lnk C:\qemu-1.5.0-win32-sdl\qemu-system-i386w.exe -hda "Z:\vm\devel.qcow" -m 512 -name devel
+#test_nodebug.lnk C:\qemu-1.5.0-win32-sdl\qemu-system-i386w.exe -hda "Z:\vm\test.qcow" -kernel "Z:\source\linux-2.6.22.5\bzImage" -m 512 -gdb tcp:127.0.0.1:1234 -name test
+
+# wangyu 你写下这里
+
+
+#if [ -d "ece391" ]; then #check if the dir exists
+#    echo "Dir ece391 exists"
+#else
+#    echo "Dir ece391 does not exist"
+#fi
