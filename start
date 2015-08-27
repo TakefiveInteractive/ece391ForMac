@@ -6,6 +6,7 @@ echo "Yifei Teng, Yu Wang, Han Yan"
 echo "Special Thanks for our TA Fei Deng & classmate bjackson"
 homebrew_check=$(which brew)
 p7zip_check=$(which 7z)
+wget_check=$(which wget)
 
 if [ "${homebrew_check}" == "" ]; then
     echo "Installing homebrew..."
@@ -14,6 +15,10 @@ fi
 
 if [ "${p7zip_check}" == "" ]; then
     brew install p7zip
+fi
+
+if [ "${wget_check}" == "" ]; then
+    brew install wget
 fi
 
 # download the main img
