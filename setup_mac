@@ -29,7 +29,7 @@ if [ "${pkgconfig_check}" == "" ]; then
     brew install pkg-config
 fi
 
-if [ "${qemu_check}" == "" ]; then #qemu not installed
+if [ "${qemu_check}" == "" ] || [ "${qemu_check}" == "qemu not found" ]; then #qemu not installed
     echo "Compiling Qemu..."
     cd "${current_dir}/qemu_mac"
     ./configure
