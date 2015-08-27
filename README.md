@@ -11,6 +11,7 @@ git clone "https://github.com/Tedko/ece391ForMac.git"
 then run 
 
 ```fish
+cd ece391ForMac
 ./start
 ```
 
