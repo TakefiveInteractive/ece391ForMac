@@ -2,8 +2,8 @@
 
 
 echo "Welcome to ece391 setup for OS X"
-echo "Yifei Teng, Yu Wang, Han Yan"
-echo "Special Thanks for our TA Fei Deng & classmate bjackson"
+echo "Yifei Teng, Yu Wang, Han Yan, Brett Jackson"
+echo "Special Thanks for our TA Fei Deng"
 homebrew_check=$(which brew)
 p7zip_check=$(which 7z)
 wget_check=$(which wget)
