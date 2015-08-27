@@ -13,7 +13,6 @@ echo '################################################################'
 homebrew_check=$(which brew)
 pkgconfig_check=$(which pkg-config)
 qemu_check=$(which qemu-img)
-qemuVer_check=$(qemu-img --v | grep 1.5.0)
 current_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 vm_dir="${current_dir}/work/vm"
 image_dir="${current_dir}/image/ece391.qcow"
@@ -29,16 +28,18 @@ if [ "${pkgconfig_check}" == "" ]; then
     brew install pkg-config
 fi
 
-if [ "${qemu_check}" == "" ] || [ "${qemu_check}" == "qemu not found" ]; then #qemu not installed
-    echo "Compiling Qemu..."
+if [ "${qemu_check}" == "" ]; then
+    echo "Compiling qemu..."
     cd "${current_dir}/qemu_mac"
     ./configure
     make
+    echo "Installing qemu..."
     sudo make install
 else
-    if [ "${qemuVer_check}" == "" ]; then
+    qemu_ver_check=$(qemu-img --v | grep 1.5.0)
+    if [ "${qemu_ver_check}" == "" ]; then
         echo "Wrong version of qemu is installed"
-        echo "Please uninstall it , then run this script again"
+        echo "Please uninstall it, then run this script again"
         exit 1
     fi
 fi
@@ -55,8 +56,8 @@ if [ ! -f "${vm_dir}/test.qcow" ]; then
     qemu-img create -b "${image_dir}" -f qcow2 "${vm_dir}/test.qcow"
 fi
 
-printf "#!/bin/bash \n qemu-system-i386 -hda \"${vm_dir}/devel.qcow\" -m 512 -name devel" > ~/Desktop/devel
-printf "#!/bin/bash \n qemu-system-i386 -hda \"${vm_dir}/test.qcow\" -m 512 -name test -gdb tcp:127.0.0.1:1234 -S -kernel \"${kernel_dir}\"" > ~/Desktop/test_debug
-printf "#!/bin/bash \n qemu-system-i386 -hda \"${vm_dir}/test.qcow\" -m 512 -name test -kernel \"${kernel_dir}\"" > ~/Desktop/test_nodebug
+printf '#!/bin/bash\nqemu-system-i386 -hda \"${vm_dir}/devel.qcow\" -m 512 -name devel' > ~/Desktop/devel
+printf '#!/bin/bash\nqemu-system-i386 -hda \"${vm_dir}/test.qcow\" -m 512 -name test -gdb tcp:127.0.0.1:1234 -S -kernel \"${kernel_dir}\"' > ~/Desktop/test_debug
+printf '#!/bin/bash\nqemu-system-i386 -hda \"${vm_dir}/test.qcow\" -m 512 -name test -kernel \"${kernel_dir}\"' > ~/Desktop/test_nodebug
 
 chmod a+x ~/Desktop/devel ~/Desktop/test_debug ~/Desktop/test_nodebug
