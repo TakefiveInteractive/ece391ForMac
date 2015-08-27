@@ -27,6 +27,7 @@ fi
 if [ "${pkgconfig_check}" == "" ]; then
     echo "Installing pkg-config..."
     brew install pkg-config
+    brew install wget
 fi
 
 if [ "${qemu_check}" == "" ] || [ "${qemu_check}" == "qemu not found" ]; then #qemu not installed
