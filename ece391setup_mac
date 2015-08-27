@@ -8,23 +8,55 @@
 
 echo "Welcome to ece391 auto setup for OS X."
 echo "Proudly created by Han Yan, Yifei Teng, Yu Wang."
+
+# check if connected with campus WiFi
+currentWiFi=$(/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | awk '/ SSID/ {print substr($0, index($0, $2))}'
+)
+if [ "$currentWiFi" = "" ]
+then
+    echo "No WiFi connection"
+else
+    if [ "$currentWiFi" = "IllinoisNet" ]||[ "$currentWiFi" = "UIUCnet" ];
+    then # wow your are in campus wifi
+        echo "Great! You're connected with campus WiFi."
+        VPNyn="N"
+    else
+        echo "Connect to UIUC's VPN?" yn
+        read VPNyn
+    fi
+fi
+
+# end CheckWiFi
+
+# connect to VPN
+if [ "$VPNyn" = "y" ]||[ "$VPNyn" = "Y" ]
+then
+    open /Applications/Cisco/Cisco\ AnyConnect\ Secure\ Mobility\ Client.app
+    sleep 2
+fi
+# end VPN
+
+echo ""
+echo "Network Checking Succeed."
 echo "Please enter your netid:"
 read yournetid
 cd ~
 
 # Mount ece391_Classes&ece391_Team
-if [ ! -d "ece391_Classes" ]; then # check if the dir exists
+if [ ! -d "ece391_Classes" ]
+then # check if the dir exists
     mkdir ece391_Classes
     echo "Created dir ece391_Classes"
 fi
-mount -t smbfs //$yournetid@instdir05.engr.illinois.edu/classes/ece391 ece391_Classes
+mount -t smbfs "//${yournetid}@instdir05.engr.illinois.edu/classes/ece391" ece391_Classes
 echo "Mount ece391_Classes successfully."
 echo "Your Shared Volume ece391 is mapped to dir ece391_Classes."
-if [ ! -d "ece391_Team" ]; then # check if the dir exists
+if [ ! -d "ece391_Team" ]
+then # check if the dir exists
     mkdir ece391_Team
     echo "Created dir ece391_Classes"
 fi
-mount -t smbfs //$yournetid@engr-ece-391.engr.illinois.edu/team/ece391/$yournetid ece391_Team
+mount -t smbfs "//${yournetid}@engr-ece-391.engr.illinois.edu/team/ece391/${yournetid}" ece391_Team
 echo "Mount ece391_Team successfully."
 echo "Your Shared Volume team/$yournetid is mapped to dir ece391_Team."
 # end Mount
