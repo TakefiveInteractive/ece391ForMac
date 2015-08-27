@@ -8,7 +8,7 @@ homebrew_check=$(which brew)
 p7zip_check=$(which 7z)
 
 if [ "${homebrew_check}" == "" ]; then
-    echo "brew is not installed"
+    echo "Installing homebrew..."
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
