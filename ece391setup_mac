@@ -31,10 +31,18 @@ echo "Your Shared Volume team/$yournetid is mapped to dir ece391_Team."
 
 # check is qemu installed
 isQemuInstalled=$(which qemu-img)
-if [ "$isQemuInstalled" != "" ]; then #check if the dir exists
+isBrewInstalled=$(which brew)
+
+if [ "$isQemuInstalled" != "" ] && [ "$isBrewInstalled" != "" ]
+then #Qemu & Brew are installed
     echo "Pkg qemu already exists"
-else
-    brew install qemu
+elif [ "$isBrewInstalled" == "" ] &&  [ "$isQemuInstalled" != "" ]
+    then #brew is installed, use it to install Qemu
+        brew install qemu
+    else
+        echo "Installing Homebrew..."
+        ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+        brew install qemu
 fi
 # end check
 
@@ -42,7 +50,7 @@ fi
 
 
 #devel.lnk = C:\qemu-1.5.0-win32-sdl\qemu-system-i386w.exe -hda "Z:\vm\devel.qcow" -m 512 -name devel
-#test_debug.lnk C:\qemu-1.5.0-win32-sdl\qemu-system-i386w.exe -hda "Z:\vm\devel.qcow" -m 512 -name devel
+#test_debug.lnk C:\qemu-1.5.0-win32-sdl\qemu-system-i386w.exe -hda "Z:\vm\test.qcow" -kernel "Z:\source\linux-2.6.22.5\bzImage" -m 512 -gdb tcp:127.0.0.1:1234 -S -name test#test_nodebug.lnk C:\qemu-1.5.0-win32-sdl\qemu-system-i386w.exe -hda "Z:\vm\test.qcow" -kernel "Z:\source\linux-2.6.22.5\bzImage" -m 512 -gdb tcp:127.0.0.1:1234 -name test
 #test_nodebug.lnk C:\qemu-1.5.0-win32-sdl\qemu-system-i386w.exe -hda "Z:\vm\test.qcow" -kernel "Z:\source\linux-2.6.22.5\bzImage" -m 512 -gdb tcp:127.0.0.1:1234 -name test
 
 # wangyu 你写下这里
