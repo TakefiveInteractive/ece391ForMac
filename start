@@ -30,4 +30,5 @@ fi
 cp setup_mac ./ece391/setup_mac
 cd ece391
 ./setup_mac #setup for mac
+cd ../
 ./unisonSync #setup for unison
