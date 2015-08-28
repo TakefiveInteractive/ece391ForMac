@@ -43,7 +43,12 @@ echo '#!/bin/bash' > /usr/local/bin/ece391.dev
 echo "qemu-system-i386 -hda ~/ece391ForMac/ece391/work/vm/devel.qcow -net nic -net user,smb=${userdir}/ece391ForMac/ece391/work -m 768 -name devel -redir tcp:2222::22" >> /usr/local/bin/ece391.dev
 echo '#!/bin/bash' > /usr/local/bin/ece391.ssh
 echo "ssh -p 2222 user@localhost" >> /usr/local/bin/ece391.ssh
+echo '#!/bin/bash' > /usr/local/bin/ece391.sync
+echo "unison ~/ece391_Team/ ~/ece391ForMac/ece391/work/  -fat" >> /usr/local/bin/ece391.sync
 
-chmod a+x /usr/local/bin/ece391.test /usr/local/bin/ece391.dev /usr/local/bin/ece391.ssh
+
+
+
+chmod a+x /usr/local/bin/ece391.test /usr/local/bin/ece391.dev /usr/local/bin/ece391.ssh /usr/local/bin/ece391.sync
 
 # end create shortcut
