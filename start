@@ -5,16 +5,11 @@ echo "Welcome to ece391 setup for OS X"
 echo "Yifei Teng, Yu Wang, Han Yan, Brett Jackson"
 echo "Special Thanks for our TA Fei Deng"
 homebrew_check=$(which brew)
-p7zip_check=$(which 7z)
 wget_check=$(which wget)
 
 if [ "${homebrew_check}" == "" ]; then
     echo "Installing homebrew..."
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-fi
-
-if [ "${p7zip_check}" == "" ]; then
-    brew install p7zip
 fi
 
 if [ "${wget_check}" == "" ]; then
@@ -26,7 +21,7 @@ fi
 if [ ! -f "ece391.tar.gz" ];then
     wget "http://duke8253.net/ece391/ece391.tar.gz"
 fi
-7z x ece391.tar.gz
+tar xzvf ece391.tar.gz
 echo "Unzip finished"
 
 cp setup_mac ./ece391/setup_mac
