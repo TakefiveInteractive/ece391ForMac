@@ -26,7 +26,7 @@ fi
 if [ ! -f "ece391.tar.gz" ];then
     wget "http://duke8253.net/ece391/ece391.tar.gz"
 fi
-tar -xvzf ece391_sp15.zip
+7z x ece391.tar.gz
 echo "Unzip finished"
 
 cp setup_mac ./ece391/setup_mac
