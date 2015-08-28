@@ -6,6 +6,7 @@ This is a repo created for ece391, since officially there is no setup guide prov
 ## Usage
 
 ```fish
+cd ~
 git clone "https://github.com/Tedko/ece391ForMac.git"
 ```
 then run 
