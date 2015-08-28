@@ -30,6 +30,8 @@ fi
 
 if [ "${qemu_check}" == "" ]; then
     echo "Compiling qemu..."
+    brew install glib
+    brew install pixman
     cd "${current_dir}/qemu_mac"
     ./configure
     make
