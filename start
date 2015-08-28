@@ -10,7 +10,7 @@ wget_check=$(which wget)
 if [ "${homebrew_check}" == "" ]; then
     echo "Installing homebrew..."
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-fi
+fiROOT
 
 if [ "${wget_check}" == "" ]; then
     brew install wget

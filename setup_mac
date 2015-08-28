@@ -10,7 +10,7 @@ echo '#                          2015.08.27                          #'
 echo '#                                                              #'
 echo '################################################################'
 
-homebrew_check=$(which brew)
+#homebrew_check=$(which brew)
 pkgconfig_check=$(which pkg-config)
 qemu_check=$(which qemu-img)
 current_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
@@ -18,10 +18,10 @@ vm_dir="${current_dir}/work/vm"
 image_dir="${current_dir}/image/ece391.qcow"
 kernel_dir="${current_dir}/work/source/linux-2.6.22.5/bzImage"
 
-if [ "${homebrew_check}" == "" ]; then
-    echo "Installing homebrew..."
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-fi
+# if [ "${homebrew_check}" == "" ]; then
+#     echo "Installing homebrew..."
+#     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+# fi
 
 if [ "${pkgconfig_check}" == "" ]; then
     echo "Installing pkg-config..."
