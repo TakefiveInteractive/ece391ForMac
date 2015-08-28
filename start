@@ -21,9 +21,13 @@ fi
 if [ ! -f "ece391.tar.gz" ];then
     wget "http://duke8253.net/ece391/ece391.tar.gz"
 fi
-tar xzvf ece391.tar.gz
-echo "Unzip finished"
-
+if [ ! -d "ece391" ]; then
+    tar xzvf ece391.tar.gz
+    echo "Unzip finished"
+else
+    echo "Folder ece391 already exists"
+fi
 cp setup_mac ./ece391/setup_mac
 cd ece391
-./setup_mac
+./setup_mac #setup for mac
+./unisonSync #setup for unison

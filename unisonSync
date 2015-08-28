@@ -1,0 +1,9 @@
+#!/bin/bash
+
+unison_check=$(which unison)
+echo 'Start to setup for Sync.'
+
+if [ "${unison_check}" == "" ]; then
+    echo "Installing unison..."
+    brew install unison
+fi
