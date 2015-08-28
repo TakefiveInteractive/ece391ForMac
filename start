@@ -38,7 +38,7 @@ cd ../
 
 # create shortcut command
 echo '#!/bin/bash' > /usr/local/bin/ece391.test
-echo "qemu-system-i386 -hda work/vm/test.qcow -no-kvm -kernel ~/ece391ForMac/ece391/work/source/linux-2.6.22.5/bzImage -m 512 -gdb tcp:127.0.0.1:1234 -S -name test" >> /usr/local/bin/ece391.test
+echo "qemu-system-i386 -hda work/vm/test.qcow -no-kvm -kernel ${userdir}/ece391ForMac/ece391/work/source/linux-2.6.22.5/bzImage -m 512 -gdb tcp:127.0.0.1:1234 -S -name test" >> /usr/local/bin/ece391.test
 echo '#!/bin/bash' > /usr/local/bin/ece391.dev
 echo "qemu-system-i386 -hda ~/ece391ForMac/ece391/work/vm/devel.qcow -net nic -net user,smb=${userdir}/ece391ForMac/ece391/work -m 768 -name devel -redir tcp:2222::22" >> /usr/local/bin/ece391.dev
 echo '#!/bin/bash' > /usr/local/bin/ece391.ssh
