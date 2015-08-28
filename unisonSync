@@ -6,4 +6,6 @@ echo 'Start to setup for Sync.'
 if [ "${unison_check}" == "" ]; then
     echo "Installing unison..."
     brew install unison
+else
+    echo "Unison is installed"
 fi
