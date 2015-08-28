@@ -59,10 +59,10 @@ if [ ! -f "${vm_dir}/test.qcow" ]; then
 fi
 
 echo '#!/bin/bash' > ~/Desktop/devel
-echo 'qemu-system-i386 -hda \"${vm_dir}/devel.qcow\" -m 512 -name devel' >> ~/Desktop/devel
+echo "qemu-system-i386 -hda \"${vm_dir}/devel.qcow\" -m 512 -name devel" >> ~/Desktop/devel
 echo '#!/bin/bash' > ~/Desktop/test_debug
-echo 'qemu-system-i386 -hda \"${vm_dir}/test.qcow\" -m 512 -name test -gdb tcp:127.0.0.1:1234 -S -kernel \"${kernel_dir}\"' >> ~/Desktop/test_debug
+echo "qemu-system-i386 -hda \"${vm_dir}/test.qcow\" -m 512 -name test -gdb tcp:127.0.0.1:1234 -S -kernel \"${kernel_dir}\"" >> ~/Desktop/test_debug
 echo '#!/bin/bash' > ~/Desktop/test_nodebug
-echo 'qemu-system-i386 -hda \"${vm_dir}/test.qcow\" -m 512 -name test -kernel \"${kernel_dir}\"' >> ~/Desktop/test_nodebug
+echo "qemu-system-i386 -hda \"${vm_dir}/test.qcow\" -m 512 -name test -kernel \"${kernel_dir}\"" >> ~/Desktop/test_nodebug
 
 chmod a+x ~/Desktop/devel ~/Desktop/test_debug ~/Desktop/test_nodebug
