@@ -23,10 +23,10 @@ fi
 
 # download the main img
 
-if [ ! -f "ece391_sp15.zip" ];then
-    wget "http://duke8253.net/ece391/ece391_sp15.zip"
+if [ ! -f "ece391.tar.gz" ];then
+    wget "http://duke8253.net/ece391/ece391.tar.gz"
 fi
-7z x ece391_sp15.zip
+tar -xvzf ece391_sp15.zip
 echo "Unzip finished"
 
 cp setup_mac ./ece391/setup_mac
