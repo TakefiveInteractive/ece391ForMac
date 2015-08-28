@@ -9,3 +9,6 @@ if [ "${unison_check}" == "" ]; then
 else
     echo "Unison is already installed"
 fi
+
+
+#/usr/local/bin/

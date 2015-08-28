@@ -6,6 +6,8 @@ echo "Yifei Teng, Yu Wang, Han Yan, Brett Jackson"
 echo "Special Thanks for our TA Fei Deng"
 homebrew_check=$(which brew)
 wget_check=$(which wget)
+userdir=$(cd ~ ;pwd)
+
 
 if [ "${homebrew_check}" == "" ]; then
     echo "Installing homebrew..."
@@ -32,3 +34,16 @@ cd ece391
 ./setup_mac #setup for mac
 cd ../
 ./unisonSync #setup for unison
+
+
+# create shortcut command
+echo '#!/bin/bash' > /usr/local/bin/ece391.test
+echo "qemu-system-i386 -hda work/vm/test.qcow -no-kvm -kernel ~/ece391ForMac/ece391/work/source/linux-2.6.22.5/bzImage -m 512 -gdb tcp:127.0.0.1:1234 -S -name test" >> /usr/local/bin/ece391.test
+echo '#!/bin/bash' > /usr/local/bin/ece391.dev
+echo "qemu-system-i386 -hda ~/ece391ForMac/ece391/work/vm/devel.qcow -net nic -net user,smb=${userdir}/ece391ForMac/ece391/work -m 768 -name devel -redir tcp:2222::22" >> /usr/local/bin/ece391.dev
+echo '#!/bin/bash' > /usr/local/bin/ece391.ssh
+echo "ssh -p 2222 user@localhost" >> /usr/local/bin/ece391.ssh
+
+chmod a+x /usr/local/bin/ece391.test /usr/local/bin/ece391.dev /usr/local/bin/ece391.ssh
+
+# end create shortcut
