@@ -65,10 +65,3 @@ fi
 mount -t smbfs "//${yournetid}@engr-ece-391.engr.illinois.edu/team/ece391/${yournetid}" ece391_Team
 echo "Your Shared Volume team/$yournetid is mapped to dir ece391_Team."
 # end Mount
-
-
-#if [ -d "ece391" ]; then #check if the dir exists
-#    echo "Dir ece391 exists"
-#else
-#    echo "Dir ece391 does not exist"
-#fi
