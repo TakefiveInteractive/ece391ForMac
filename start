@@ -46,8 +46,11 @@ echo "ssh -p 2222 user@localhost" >> /usr/local/bin/ece391.ssh
 echo '#!/bin/bash' > /usr/local/bin/ece391.sync
 echo "unison ~/ece391_Team/ ~/ece391ForMac/ece391/work/ -fat" >> /usr/local/bin/ece391.sync
 
+
+
 echo '#!/bin/bash' > /usr/local/bin/ece391.syncvm
 echo "unison ~/ece391_Team/vm ~/ece391ForMac/ece391/work/vm -fat" >> /usr/local/bin/ece391.syncvm
+
 
 
 
