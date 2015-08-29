@@ -51,6 +51,6 @@ echo "unison ~/ece391_Team/vm ~/ece391ForMac/ece391/work/vm -fat" >> /usr/local/
 
 
 
-chmod a+x /usr/local/bin/ece391.test /usr/local/bin/ece391.dev /usr/local/bin/ece391.ssh /usr/local/bin/ece391.sync
+chmod a+x /usr/local/bin/ece391.test /usr/local/bin/ece391.dev /usr/local/bin/ece391.ssh /usr/local/bin/ece391.sync /usr/local/bin/ece391.syncvm
 
 # end create shortcut
