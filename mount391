@@ -19,7 +19,7 @@ else
         echo "Great! You're connected with campus WiFi."
         VPNyn="N"
     else
-        echo "Connect to UIUC's VPN?" yn
+        echo "Already connected to UIUC's VPN?" yn
         read VPNyn
     fi
 fi
@@ -27,14 +27,13 @@ fi
 # end CheckWiFi
 
 # connect to VPN
-if [ "$VPNyn" = "y" ]||[ "$VPNyn" = "Y" ]
+if [ "$VPNyn" = "n" ]||[ "$VPNyn" = "N" ]
 then
 cd /Applications
     if [  -d "Cisco" ];then
         echo "open Cisco AnyConnect"
         open /Applications/Cisco/Cisco\ AnyConnect\ Secure\ Mobility\ Client.app
         sleep 2
-        echo
     else
         echo "Please install Cisco AnyConnect first"
         open https://www.cites.illinois.edu/vpn/
@@ -50,6 +49,7 @@ read yournetid
 cd ~
 
 # Mount ece391_Classes&ece391_Team
+cd ~
 if [ ! -d "ece391_Classes" ]
 then # check if the dir exists
     mkdir ece391_Classes
@@ -67,15 +67,6 @@ mount -t smbfs "//${yournetid}@engr-ece-391.engr.illinois.edu/team/ece391/${your
 echo "Mount ece391_Team successfully."
 echo "Your Shared Volume team/$yournetid is mapped to dir ece391_Team."
 # end Mount
-
-
-
-
-#devel.lnk = C:\qemu-1.5.0-win32-sdl\qemu-system-i386w.exe -hda "Z:\vm\devel.qcow" -m 512 -name devel
-#test_debug.lnk C:\qemu-1.5.0-win32-sdl\qemu-system-i386w.exe -hda "Z:\vm\test.qcow" -kernel "Z:\source\linux-2.6.22.5\bzImage" -m 512 -gdb tcp:127.0.0.1:1234 -S -name test#test_nodebug.lnk C:\qemu-1.5.0-win32-sdl\qemu-system-i386w.exe -hda "Z:\vm\test.qcow" -kernel "Z:\source\linux-2.6.22.5\bzImage" -m 512 -gdb tcp:127.0.0.1:1234 -name test
-#test_nodebug.lnk C:\qemu-1.5.0-win32-sdl\qemu-system-i386w.exe -hda "Z:\vm\test.qcow" -kernel "Z:\source\linux-2.6.22.5\bzImage" -m 512 -gdb tcp:127.0.0.1:1234 -name test
-
-# wangyu 你写下这里
 
 
 #if [ -d "ece391" ]; then #check if the dir exists
