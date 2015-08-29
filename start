@@ -7,7 +7,7 @@ echo "Special Thanks for our TA Fei Deng"
 homebrew_check=$(which brew)
 wget_check=$(which wget)
 userdir=$(cd ~ ;pwd)
-
+unison_check=$(which unison)
 
 if [ "${homebrew_check}" == "" ]; then
     echo "Installing homebrew..."
@@ -16,6 +16,13 @@ fi
 
 if [ "${wget_check}" == "" ]; then
     brew install wget
+fi
+
+if [ "${unison_check}" == "" ]; then
+    echo "Installing unison..."
+    brew install unison
+else
+    echo "Unison is already installed"
 fi
 
 # download the main img
@@ -33,7 +40,6 @@ cp setup_mac ./ece391/setup_mac
 cd ece391
 ./setup_mac #setup for mac
 cd ../
-./unisonSync #setup for unison
 
 
 # create shortcut command
@@ -45,8 +51,6 @@ echo '#!/bin/bash' > /usr/local/bin/ece391.ssh
 echo "ssh -p 2222 user@localhost" >> /usr/local/bin/ece391.ssh
 echo '#!/bin/bash' > /usr/local/bin/ece391.sync
 echo "unison ~/ece391_Team/ ~/ece391ForMac/ece391/work/ -fat" >> /usr/local/bin/ece391.sync
-
-
 
 echo '#!/bin/bash' > /usr/local/bin/ece391.syncvm
 echo "unison ~/ece391_Team/vm ~/ece391ForMac/ece391/work/vm -fat" >> /usr/local/bin/ece391.syncvm
