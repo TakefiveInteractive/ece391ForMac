@@ -15,14 +15,13 @@ if [ "${homebrew_check}" == "" ]; then
 fi
 
 if [ "${wget_check}" == "" ]; then
+    echo "Installing wget..."
     brew install wget
 fi
 
 if [ "${unison_check}" == "" ]; then
     echo "Installing unison..."
     brew install unison
-else
-    echo "Unison is already installed"
 fi
 
 # download the main img
