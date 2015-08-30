@@ -1,0 +1,13 @@
+#!/bin/bash
+
+MY_PATH="`dirname \"$0\"`"              # relative
+MY_PATH="`( cd \"$MY_PATH\" && pwd )`"  # absolutized and normalized
+if [ -z "$MY_PATH" ] ; then
+  # error; for some reason, the path is not accessible
+  # to the script (e.g. permissions re-evaled after suid)
+  exit 1  # fail
+fi
+
+old_path=$($MY_PATH/ece391ForMac/cowhacker/cowhacker patch /Users/yifei/ece391/work/vm/devel.qcow)
+unison ~/ece391/work/ /Volumes/teng9/ -fat
+$MY_PATH/ece391ForMac/cowhacker/cowhacker revert /Users/yifei/ece391/work/vm/devel.qcow $old_path
