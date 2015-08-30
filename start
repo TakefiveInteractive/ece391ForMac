@@ -22,6 +22,7 @@ fi
 if [ "${unison_check}" == "" ]; then
     echo "Installing unison..."
     brew install unison
+    cp default.prf ~/Library/Application\ Support/Unison/
 fi
 
 # download the main img
