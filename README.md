@@ -15,8 +15,27 @@ then run
 cd ece391ForMac
 ./start
 ```
-```./start``` will automatically download all files and sources need for ece391, and will unzip them;
-then it will trigger ```./setup_mac``` for installing ```Qemu 1.5``` and create three links on your desktop. 
+
+then you can use
+
+
+```ece391.dev```
+
+to start the dev machine
+
+if you prefer to use your default terminal or iTerm, you can then use
+
+```ece391.ssh```after your Qemu successfully boot.
+
+
+It you've down with your setting or MP, you can then run 
+
+```./sync```
+
+under ~/ece391ForMac dir
+
+
+
 
 
 **Special Thanks for our TA Fei Deng**
