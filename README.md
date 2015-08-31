@@ -16,23 +16,16 @@ cd ece391ForMac
 ./start
 ```
 
-then you can use
+then you can use the command ```ece391.dev``` to start the dev machine
 
-
-```ece391.dev```
-
-to start the dev machine
 
 if you prefer to use your default terminal or iTerm, you can then use
-
-```ece391.ssh```after your Qemu successfully boot.
+```ece391.ssh```after your dev machine successfully boot.
 
 
 It you've down with your setting or MP, you can then run 
 
-```./sync```
-
-under ~/ece391ForMac dir
+```./sync```under ~/ece391ForMac dir
 
 
 
