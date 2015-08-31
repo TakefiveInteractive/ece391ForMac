@@ -9,6 +9,6 @@ if [ -z "${MY_PATH}" ] ; then
   exit 1  # fail
 fi
 
-old_path=$("${MY_PATH}"/ece391ForMac/cowhacker/cowhacker patch "${userdir}"/ece391/work/vm/devel.qcow)
+old_path=$("${MY_PATH}"/cowhacker/cowhacker patch "${userdir}"/ece391ForMac/ece391/work/vm/devel.qcow)
 unison ~/ece391_Team/ ~/ece391ForMac/ece391/work/ -fat
-"${MY_PATH}"/ece391ForMac/cowhacker/cowhacker revert "${userdir}"/ece391/work/vm/devel.qcow "$old_path"
+"${MY_PATH}"/cowhacker/cowhacker revert "${userdir}"/ece391ForMac/ece391/work/vm/devel.qcow "$old_path"
