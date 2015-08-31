@@ -17,7 +17,7 @@ else
     if [ "$currentWiFi" = "IllinoisNet" ]||[ "$currentWiFi" = "UIUCnet" ];
     then # wow your are in campus wifi
         echo "Great! You're connected with campus WiFi."
-        VPNyn="N"
+        VPNyn="onCampus"
     else
         echo "Already connected to UIUC's VPN?" yn
         read VPNyn
