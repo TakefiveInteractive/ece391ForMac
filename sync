@@ -1,5 +1,9 @@
 #!/bin/bash
 
+cd ~/ece391ForMac
+echo  "Mounting Shared Volumes..."
+./mount391
+
 userdir=$(cd ~ ;pwd)
 MY_PATH="`dirname \"$0\"`"              # relative
 MY_PATH="`( cd \"${MY_PATH}\" && pwd )`"  # absolutized and normalized
@@ -12,3 +16,7 @@ fi
 old_path=$("${MY_PATH}"/cowhacker/cowhacker patch "${userdir}"/ece391ForMac/ece391/work/vm/devel.qcow)
 unison ~/ece391_Team/ ~/ece391ForMac/ece391/work/ -fat
 "${MY_PATH}"/cowhacker/cowhacker revert "${userdir}"/ece391ForMac/ece391/work/vm/devel.qcow "$old_path"
+
+cd ~/ece391ForMac
+echo  "Unmounting Shared Volumes..."
+./unmount391
