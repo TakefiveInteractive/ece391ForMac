@@ -28,9 +28,13 @@ if you prefer to use your default terminal or iTerm, you can then use
 
 It you've down with your setting or MP, you can then run 
 
-```./sync```under ~/ece391ForMac dir
+```
+./sync
+```
 
+under ~/ece391ForMac dir
 
+You can use ```./mount391``` and ```./unmount391``` for shortcuts for mounting Shared Volumes :)
 
 
 
