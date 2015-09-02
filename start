@@ -43,12 +43,12 @@ cd ../
 
 
 # create shortcut command
-sudo echo '#!/bin/bash' > /usr/local/bin/ece391.test
-sudo echo "qemu-system-i386 -hda ~/ece391ForMac/ece391/work/vm/test.qcow -no-kvm -kernel ~/ece391ForMac/ece391/work/source/linux-2.6.22.5/bzImage -m 512 -gdb tcp:127.0.0.1:1234 -S -name test" >> /usr/local/bin/ece391.test
-sudo echo '#!/bin/bash' > /usr/local/bin/ece391.dev
-sudo echo "qemu-system-i386 -hda ~/ece391ForMac/ece391/work/vm/devel.qcow -net nic -net user,smb=${userdir}/ece391ForMac/ece391/work -m 768 -name devel -redir tcp:2222::22" >> /usr/local/bin/ece391.dev
-sudo echo '#!/bin/bash' > /usr/local/bin/ece391.ssh
-sudo echo "ssh -p 2222 user@localhost" >> /usr/local/bin/ece391.ssh
+echo '#!/bin/bash' | sudo tee --append /usr/local/bin/ece391.test
+echo "qemu-system-i386 -hda ~/ece391ForMac/ece391/work/vm/test.qcow -no-kvm -kernel ~/ece391ForMac/ece391/work/source/linux-2.6.22.5/bzImage -m 512 -gdb tcp:127.0.0.1:1234 -S -name test" | sudo tee --append /usr/local/bin/ece391.test
+echo '#!/bin/bash' | sudo tee --append /usr/local/bin/ece391.dev
+echo "qemu-system-i386 -hda ~/ece391ForMac/ece391/work/vm/devel.qcow -net nic -net user,smb=${userdir}/ece391ForMac/ece391/work -m 768 -name devel -redir tcp:2222::22" | sudo tee --append /usr/local/bin/ece391.dev
+echo '#!/bin/bash' | sudo tee --append /usr/local/bin/ece391.ssh
+echo "ssh -p 2222 user@localhost" | sudo tee --append /usr/local/bin/ece391.ssh
 # echo '#!/bin/bash' > /usr/local/bin/ece391.sync
 # echo "unison ~/ece391_Team/ ~/ece391ForMac/ece391/work/ -fat" >> /usr/local/bin/ece391.sync
 # echo '#!/bin/bash' > /usr/local/bin/ece391.syncvm
