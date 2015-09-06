@@ -57,6 +57,6 @@ echo "ssh -p 2222 user@localhost" | sudo tee -a /usr/local/bin/ece391.ssh >/dev/
 
 
 
-chmod a+x /usr/local/bin/ece391.test /usr/local/bin/ece391.dev /usr/local/bin/ece391.ssh #/usr/local/bin/ece391.sync /usr/local/bin/ece391.syncvm
+sudo chmod a+x /usr/local/bin/ece391.test /usr/local/bin/ece391.dev /usr/local/bin/ece391.ssh #/usr/local/bin/ece391.sync /usr/local/bin/ece391.syncvm
 
 # end create shortcut
