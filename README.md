@@ -5,7 +5,7 @@ This is a repo created for ece391, since officially there is no setup guide prov
 
 Fully tested on OS X 10.10 :) 
 
-For OS X 10.11 User, please ```make``` under ```cowhacker/src``` and then move ```cowhacker``` under ```cowhacker/```
+For OS X 10.11 User, please ```make``` under ```cowhacker``` and then move ```cowhacker/bin/macosx/*/cowhacker{the one you just compiled}``` under ```cowhacker/```
 ## Usage
 
 ```fish
