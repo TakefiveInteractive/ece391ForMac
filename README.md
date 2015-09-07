@@ -10,7 +10,7 @@ For OS X 10.11 User, please ```make``` under ```cowhacker``` and then move ```co
 
 ```fish
 cd ~
-git clone "https://github.com/Tedko/ece391ForMac.git"
+git clone "https://github.com/TakefiveInteractive/ece391ForMac.git"
 ```
 then run 
 
