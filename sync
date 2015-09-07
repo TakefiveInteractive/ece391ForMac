@@ -14,11 +14,11 @@ if [ -z "${MY_PATH}" ] ; then
 fi
 
 dev_old_path=$("${MY_PATH}"/cowhacker/cowhacker patch "${userdir}"/ece391ForMac/ece391/work/vm/devel.qcow)
-test_old_path=$("${MY_PATH}"/cowhacker/cowhacker patch "${userdir}"/ece391ForMac/ece391/work/vm/test.qcow)
+#test_old_path=$("${MY_PATH}"/cowhacker/cowhacker patch "${userdir}"/ece391ForMac/ece391/work/vm/test.qcow)
 
 unison ~/ece391_Team/ ~/ece391ForMac/ece391/work/ -fat
 "${MY_PATH}"/cowhacker/cowhacker revert "${userdir}"/ece391ForMac/ece391/work/vm/devel.qcow "$dev_old_path"
-"${MY_PATH}"/cowhacker/cowhacker revert "${userdir}"/ece391ForMac/ece391/work/vm/test.qcow "$test_old_path"
+#"${MY_PATH}"/cowhacker/cowhacker revert "${userdir}"/ece391ForMac/ece391/work/vm/test.qcow "$test_old_path"
 
 cd ~/ece391ForMac
 echo  "Unmounting Shared Volumes..."
