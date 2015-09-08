@@ -37,7 +37,7 @@ func install() error {
     }
     fmt.Println("Installing to " + basePath)
     fmt.Println("Pre-flight checks...")
-    out := func (str string) { fmt.Println("\t" + str) }
+    out := func (str string) { fmt.Println("\t> " + str) }
     if !util.BinExists("unison") {
         out("Unison is not installed")
         brew.Brew("unison")
@@ -45,13 +45,22 @@ func install() error {
     } else {
         out("Found Unison")
     }
-    if _, err := os.Stat(""); os.IsNotExist(err) {
-
+    baseImagePath := filepath.Join(basePath, "assets", "ece391.tar.gz")
+    if _, err := os.Stat(baseImagePath); os.IsNotExist(err) {
+        out("Downloading ece391 qemu base image")
+        err, _ := wget.WgetCli([]string {
+            os.Args[0],
+            "-O", filepath.Base(baseImagePath),
+            "-P", filepath.Dir(baseImagePath),
+            "http://duke8253.net/ece391/ece391.tar.gz" })
+        if err != nil { return err }
     }
     return nil
 }
 
 func main() {
-    install()
-    wget.WgetCli(os.Args)
+    if err := install(); err != nil {
+        fmt.Printf("Error: %+v. \n", err)
+        os.Exit(1)
+    }
 }

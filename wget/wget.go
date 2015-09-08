@@ -36,6 +36,7 @@ type Wgetter struct {
     // should be set explicitly to false when running from CLI. uggo will detect as best as possible
     AlwaysPipeStdin   bool
     OutputFilename string
+    Prefix         string
     Timeout        int //TODO
     Retries        int //TODO
     IsVerbose      bool //todo
@@ -101,6 +102,7 @@ func (w *Wgetter) ParseFlags(call []string, errPipe io.Writer) (error, int) {
     flagSet.SetOutput(errPipe)
     flagSet.AliasedBoolVar(&w.IsContinue, []string{"c", "continue"}, false, "continue")
     flagSet.AliasedStringVar(&w.OutputFilename, []string{"O","output-document"}, "", "specify filename")
+    flagSet.AliasedStringVar(&w.Prefix, []string{"P", "directory-prefix"}, "", "specify directory")
     flagSet.StringVar(&w.DefaultPage, "default-page", "index.html", "default page name")
     flagSet.BoolVar(&w.IsNoCheckCertificate, "no-check-certificate", false, "skip certificate checks")
 
@@ -382,6 +384,7 @@ func progress(perc int64) string {
 
 func getFilename(request *http.Request, resp *http.Response, options *Wgetter, errPipe io.Writer) (string, error) {
     filename := filepath.Base(request.URL.Path)
+    if options.Prefix != "" { filename += filepath.Join(options.Prefix, filename) }
 
     if !strings.Contains(filename, ".") {
         //original link didnt represent the file type. Try using the response url (after redirects)
