@@ -48,6 +48,7 @@ func install() error {
     baseImagePath := filepath.Join(basePath, "assets", "ece391.tar.gz")
     if _, err := os.Stat(baseImagePath); os.IsNotExist(err) {
         out("Downloading ece391 qemu base image")
+        os.MkdirAll(filepath.Dir(baseImagePath), 0777)
         err, _ := wget.WgetCli([]string {
             os.Args[0],
             "-O", filepath.Base(baseImagePath),

@@ -194,6 +194,9 @@ func wgetOne(link string, options *Wgetter, outPipe io.Writer, errPipe io.Writer
     if options.OutputFilename != "" {
         filename = options.OutputFilename
     }
+    if options.Prefix != "" {
+        filename = filepath.Join(options.Prefix, filename)
+    }
 
     tr, err := getHttpTransport(options)
     if err != nil {
@@ -210,6 +213,9 @@ func wgetOne(link string, options *Wgetter, outPipe io.Writer, errPipe io.Writer
         if filename == "" {
             filename = filepath.Base(request.URL.Path)
             filename = tidyFilename(filename, options.DefaultPage)
+        }
+        if options.Prefix != "" {
+            filename = filepath.Join(options.Prefix, filename)
         }
         if !strings.Contains(filename, ".") {
             filename = filename + ".html"
