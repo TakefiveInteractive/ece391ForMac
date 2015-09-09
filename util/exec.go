@@ -11,6 +11,11 @@ func MustRun(name string, args ...string) {
     }
 }
 
+func Run(name string, args ...string) error {
+    cmd := exec.Command(name, args...)
+    return cmd.Run()
+}
+
 func BinExists(filename string) bool {
     cmd := exec.Command("which", filename)
     err := cmd.Run()

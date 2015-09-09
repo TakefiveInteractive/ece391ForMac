@@ -45,6 +45,7 @@ func install() error {
     } else {
         out("Found Unison")
     }
+    // Create ece391 folder
     baseImagePath := filepath.Join(basePath, "assets", "ece391.tar.gz")
     if _, err := os.Stat(baseImagePath); os.IsNotExist(err) {
         out("Downloading ece391 qemu base image")
@@ -56,7 +57,18 @@ func install() error {
             "http://duke8253.net/ece391/ece391.tar.gz" })
         if err != nil { return err }
     }
-    if err := util.Untar(baseImagePath, basePath); err != nil { return err }
+    if _, err := os.Stat(filepath.Join(baseImagePath, "ece391")); os.IsNotExist(err) {
+        out("Extracting ece391 folder")
+        if err := util.Untar(baseImagePath, basePath); err != nil { return err }
+    } else {
+        out("ece391 folder exists")
+    }
+    if util.Run("smbd", "--version") != nil {
+        out("Smbd is not good")
+        brew.Brew("smbd")
+    } else {
+        out("Smbd detected")
+    }
     return nil
 }
 
