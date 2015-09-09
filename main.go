@@ -56,6 +56,7 @@ func install() error {
             "http://duke8253.net/ece391/ece391.tar.gz" })
         if err != nil { return err }
     }
+    if err := util.Untar(baseImagePath, basePath); err != nil { return err }
     return nil
 }
 
