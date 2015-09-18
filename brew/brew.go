@@ -4,6 +4,14 @@ import (
     "github.com/Tedko/ece391ForMac/util"
 )
 
+func getBrewDownloadString() string {
+    if runtime.GOOS == "linux" {
+        return `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/linuxbrew/go/install)"`
+    } else {
+        return `"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+    }
+}
+
 var ensureBrew = (func () func() {
     calc := false
     return func() {
@@ -11,8 +19,7 @@ var ensureBrew = (func () func() {
             if util.BinExists("brew") {
                 return
             }
-            util.MustRun("ruby", "-e",
-                `"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`)
+            util.MustRun("ruby", "-e", getBrewDownloadString())
             calc = true
         }
     }
