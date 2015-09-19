@@ -2,11 +2,12 @@ package brew
 
 import (
     "github.com/Tedko/ece391ForMac/util"
+    "runtime"
 )
 
 func getBrewDownloadString() string {
     if runtime.GOOS == "linux" {
-        return `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/linuxbrew/go/install)"`
+        return `"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/linuxbrew/go/install)"`
     } else {
         return `"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
     }

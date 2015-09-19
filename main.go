@@ -39,7 +39,7 @@ func install() error {
     fmt.Println("Pre-flight checks...")
     out := func (str string) { fmt.Println("\t> " + str) }
     if !util.BinExists("unison") {
-        out("Unison is not installed")
+        out("Unison is not installed. Installing...")
         brew.Brew("unison")
         // TODO: copy unison config file
     } else {
