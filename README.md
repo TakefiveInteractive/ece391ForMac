@@ -1,7 +1,8 @@
 # ECE391 Auto Setup For Mac Users
 
 
-Buy us some DailyByte : [Venmo tk5_uiuc](https://venmo.com/tk5_uiuc)
+(●'◡'●)ﾉ♥Buy us some DailyByte : [Venmo tk5_uiuc](https://venmo.com/tk5_uiuc)
+
 or search ```tk5_uiuc``` on your [Venmo](https://venmo.com/) App.
 
 This is a repo created for ece391, since officially there is no setup guide provided for OS X. 
