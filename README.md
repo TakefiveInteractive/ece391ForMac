@@ -1,5 +1,7 @@
 # ECE391 Auto Setup For Mac Users
 
+**NOTE**:Due to the update of swift, cowhacker may not work on your machine (with Xcode 7)
+We are going to rewrite this proj by go for better compatibility.
 
 (●'◡'●)ﾉ♥Buy us some DailyByte : [Venmo tk5_uiuc](https://venmo.com/tk5_uiuc)
 
