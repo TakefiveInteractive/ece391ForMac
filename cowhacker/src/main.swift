@@ -25,14 +25,15 @@ func parseBasePath (file: NSFileHandle) -> String {
 }
 
 func updateBasePath (file: NSFileHandle, newPath: String) -> Int {
-    if count(newPath) > 256 {
-        println("Path too long")
+ 	if newPath.characters.count > 256
+ 	{
+    	print("Path too long")
         return 1
     }
     // Write length byte
     let lengthByteOffset: UInt64 = 0x13
     file.seekToFileOffset(lengthByteOffset)
-    let lengthByte = NSData(bytes: [ UInt8(count(newPath)) ], length: 1)
+    let lengthByte = NSData(bytes: [ UInt8(newPath.characters.count) ], length: 1)
     file.writeData(lengthByte)
 
     // Write path
@@ -48,9 +49,9 @@ func updateBasePath (file: NSFileHandle, newPath: String) -> Int {
 // Entry point
 
 if Process.arguments.count < 3 {
-    println("Usage: \(Process.arguments[0]) [patch|revert] qcow_path [orig_path]")
-    println("   1) '\(Process.arguments[0]) patch qcow_path' outputs original path to backing image")
-    println("   2) '\(Process.arguments[0]) revert qcow_path orig_path' sets path to backing image back to orig_path")
+    print("Usage: \(Process.arguments[0]) [patch|revert] qcow_path [orig_path]")
+    print("   1) '\(Process.arguments[0]) patch qcow_path' outputs original path to backing image")
+    print("   2) '\(Process.arguments[0]) revert qcow_path orig_path' sets path to backing image back to orig_path")
     exit(1)
 }
 
@@ -62,11 +63,11 @@ if let modeStr = String.fromCString(Process.arguments[1]) {
     } else if modeStr == "revert" {
         mode = Mode.Revert
     } else {
-        println("Invalid mode")
+        print("Invalid mode")
         exit(1)
     }
 } else {
-    println("Invalid mode")
+    print("Invalid mode")
     exit(1)
 }
 
@@ -78,28 +79,28 @@ func main () -> Int32 {
             // }
             let error: Int
             if mode == Mode.Patch {
-                println(parseBasePath(file))
-                error = updateBasePath(file, "C:\\ece391\\devel\\ece391.qcow")
+                print(parseBasePath(file))
+                error = updateBasePath(file, newPath:"C:\\ece391\\devel\\ece391.qcow")
             } else {
                 if let newPath = Process.arguments.count >= 4 ? String.fromCString(Process.arguments[3]) : nil {
-                    error = updateBasePath(file, newPath)
+                    error = updateBasePath(file, newPath:newPath)
                 } else {
-                    println("Please specify new backing image path")
+                    print("Please specify new backing image path")
                     file.closeFile()
                     return 1
                 }
             }
             if error != 0 {
-                println("Error occurred")
+                print("Error occurred")
                 file.closeFile()
                 return 1
             }
         } else {
-            println("Cannot open file")
+            print("Cannot open file")
             return 1
         }
     } else {
-        println("Invalid path")
+        print("Invalid path")
         return 1
     }
     return 0
