@@ -13,7 +13,7 @@ func parseBasePath (file: NSFileHandle) -> String {
     let pathMaxLen = 512
     let readBuffer = UnsafeMutablePointer<UInt8>.alloc(pathMaxLen)
     data.getBytes(readBuffer, range: NSMakeRange(pathOffset, pathMaxLen))
-
+    
     let buf = UnsafeMutablePointer<CChar>(readBuffer)
     buf[pathMaxLen - 1] = 0
     var str = ""
@@ -24,26 +24,27 @@ func parseBasePath (file: NSFileHandle) -> String {
     return str
 }
 
-func updateBasePath (file: NSFileHandle, newPath: String) -> Int {
- 	if newPath.characters.count > 256
- 	{
-    	print("Path too long")
-        return 1
+enum UpdateError : ErrorType {
+    case TooLong
+}
+
+func updateBasePath (file: NSFileHandle, newPath: String) throws {
+    if newPath.characters.count > 256 {
+        print("Path too long")
+        throw(UpdateError.TooLong)
     }
     // Write length byte
     let lengthByteOffset: UInt64 = 0x13
     file.seekToFileOffset(lengthByteOffset)
     let lengthByte = NSData(bytes: [ UInt8(newPath.characters.count) ], length: 1)
     file.writeData(lengthByte)
-
+    
     // Write path
     let pathOffset: UInt64 = 0xA0 + 24
     file.seekToFileOffset(pathOffset)
     let strData = NSMutableData(data: newPath.dataUsingEncoding(NSUTF8StringEncoding)!)
     strData.appendBytes([ UInt8(0) ], length: 1)
     file.writeData(strData)
-
-    return 0
 }
 
 // Entry point
@@ -74,25 +75,23 @@ if let modeStr = String.fromCString(Process.arguments[1]) {
 func main () -> Int32 {
     if let path = String.fromCString(Process.arguments[2]) {
         if let file = NSFileHandle(forUpdatingAtPath: path) {
-            // defer {
-            //     file.closeFile()
-            // }
-            let error: Int
-            if mode == Mode.Patch {
-                print(parseBasePath(file))
-                error = updateBasePath(file, newPath:"C:\\ece391\\devel\\ece391.qcow")
-            } else {
-                if let newPath = Process.arguments.count >= 4 ? String.fromCString(Process.arguments[3]) : nil {
-                    error = updateBasePath(file, newPath:newPath)
-                } else {
-                    print("Please specify new backing image path")
-                    file.closeFile()
-                    return 1
-                }
-            }
-            if error != 0 {
-                print("Error occurred")
+            defer {
                 file.closeFile()
+            }
+            do {
+                if mode == Mode.Patch {
+                    print(parseBasePath(file))
+                    try updateBasePath(file, newPath: "C:\\ece391\\devel\\ece391.qcow")
+                } else {
+                    if let newPath = Process.arguments.count >= 4 ? String.fromCString(Process.arguments[3]) : nil {
+                        try updateBasePath(file, newPath: newPath)
+                    } else {
+                        print("Please specify new backing image path")
+                        return 1
+                    }
+                }
+            } catch {
+                print("Error occurred")
                 return 1
             }
         } else {
