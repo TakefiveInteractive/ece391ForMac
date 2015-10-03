@@ -11,10 +11,9 @@ import (
 )
 
 func credits() {
-    fmt.Println(
-`
+    fmt.Println(`
 ************************************************
-Welcome to ece391 setup for OS X/Linux
+Welcome to ECE391 setup for OS X/Linux
 - Yifei Teng, Yu Wang, Han Yan, Brett Jackson
 - Special Thanks for our TA Fei Deng
 ************************************************
