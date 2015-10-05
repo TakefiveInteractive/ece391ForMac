@@ -1,6 +1,6 @@
 # ECE391 Auto Setup For Mac Users
 
-**NOTE**:Due to the update of swift, new cowhacker may not work on your machine (with Xcode 6).Check the release to find the compatible one.
+**NOTE**:Due to the update of swift, new cowhacker may not work on your machine (with Xcode 6). Check the release to find the compatible one.
 
 We are going to rewrite this proj by **Go** for better compatibility.
 
