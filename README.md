@@ -2,6 +2,8 @@
 
 **NOTE**:Due to the update of swift, new cowhacker may not work on your machine (with Xcode 6). Check the release to find the compatible one.
 
+**NOTE**:This setup will help you install Qemu 1.5 which is an old & buggy version. However Qemu 1.5 is officially used, so you may want to use this Qemu instead of Qemu from brew. To overwrite all Qemu 1.5 setting, do `brew install qemu` & `brew link --overwrite qemu`
+
 We are going to rewrite this proj by **Go** for better compatibility.
 
 (●'◡'●)ﾉ♥Buy us some DailyByte : [Venmo tk5_uiuc](https://venmo.com/tk5_uiuc)
