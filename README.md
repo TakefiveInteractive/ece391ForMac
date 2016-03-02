@@ -1,14 +1,15 @@
 # ECE391 Auto Setup For Mac Users
 
+### Donation: (●'◡'●)ﾉ♥Buy us some DailyByte : [Venmo tk5_uiuc](https://venmo.com/tk5_uiuc)
+
+### or search ```tk5_uiuc``` on your [Venmo](https://venmo.com/) App.
+
+
 **NOTE**: Due to the update of swift, new cowhacker may not work on your machine (with Xcode 6). Check the release to find the compatible one.
 
 **NOTE**: This setup will help you install Qemu 1.5, which is an old & buggy version. However Qemu 1.5 is officially used by ECE391, so you may want to not update it and use this Qemu instead of Qemu from brew. To overwrite all Qemu 1.5 setting for your Final Extra, do `brew install qemu` & `brew link --overwrite qemu`
 
 ~~We are going to rewrite this proj by **Go** for better compatibility.~~
-
-(●'◡'●)ﾉ♥Buy us some DailyByte : [Venmo tk5_uiuc](https://venmo.com/tk5_uiuc)
-
-or search ```tk5_uiuc``` on your [Venmo](https://venmo.com/) App.
 
 This is a repo created for ece391, since officially there is no setup guide provided for OS X. 
 
