@@ -41,13 +41,13 @@ It you've down with your setting or MP, you can then run
 ./sync
 ```
 
+under ~/ece391ForMac dir
+
+
 Sync will push the recent modified files to other machine, and you can control the direction.
 
 **NOTE**: This functionality is deprecated. Though it works, it takes really really long. Make sure you're using campus network. In most cases you will not need it, but if you messed up your lab machine, and don't want to redo MP0~, try this. 
 
-
-
-under ~/ece391ForMac dir
 
 You can use ```./mount391``` and ```./unmount391``` for shortcuts for mounting Shared Volumes :)
 
