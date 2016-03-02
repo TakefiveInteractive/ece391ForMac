@@ -29,7 +29,7 @@ cd ece391ForMac
 ./start
 ```
 
-then you can use the command ```ece391.dev``` to start the dev machine
+then you can use the command `ece391.dev` to start the dev machine; `ece391.test` to start the test machine;
 
 
 if you prefer to use your default terminal or iTerm, you can then use
