@@ -35,12 +35,15 @@ if you prefer to use your default terminal or iTerm, you can then use
 ```ece391.ssh```after your dev machine successfully boot.
 
 
-It you've down with your setting or MP, you can then run 
-**NOTE**: This functionality is deprecated. Though it works, it takes really really long. Make sure you're using campus network. In most cases you will not need it, but if you messed up your lab machine, and don't want to redo MP0~, try this.
+It you've down with your setting or MP, you can then run
 
 ```
 ./sync
 ```
+
+**NOTE**: This functionality is deprecated. Though it works, it takes really really long. Make sure you're using campus network. In most cases you will not need it, but if you messed up your lab machine, and don't want to redo MP0~, try this.
+
+
 
 under ~/ece391ForMac dir
 
