@@ -36,6 +36,7 @@ if you prefer to use your default terminal or iTerm, you can then use
 
 
 It you've down with your setting or MP, you can then run 
+**NOTE**: This functionality is deprecated. Though it works, it takes really really long. Make sure you're using campus network. In most cases you will not need it, but if you messed up your lab machine, and don't want to redo MP0~, try this.
 
 ```
 ./sync
@@ -45,6 +46,21 @@ under ~/ece391ForMac dir
 
 You can use ```./mount391``` and ```./unmount391``` for shortcuts for mounting Shared Volumes :)
 
+## Tux Controller
 
+We would recommend doing this particular MP in the lab, but we do have a solution to connect Tux to Mac.
+
+Open up the first terminal and launch:
+
+```fish
+socat UNIX-LISTEN:/tmp/ece391socket,fork /dev/tty.usbserial-ECE391,raw,echo=0,ispeed=9600,ospeed=9600,clocal=1,cs8,nonblock=1,ixoff=0,ixon=0,crtscts=0
+```
+Open up the second terminal, launch qemu with this extra parameter:
+
+```
+-serial unix:/tmp/ece391socket
+```
+
+See [here](https://github.com/TakefiveInteractive/ece391ForMac/issues/6)
 
 **Special Thanks for our TA Fei Deng**
