@@ -67,6 +67,14 @@ Open up the second terminal, launch qemu with this extra parameter:
 -serial unix:/tmp/ece391socket
 ```
 
+e.g. : 
+
+```
+#!/bin/bash
+qemu-system-i386 -hda ~/ece391ForMac/ece391/work/vm/test.qcow -net nic -net user,smb=/Users/YOURNAME/ece391ForMac/ece391/work -no-kvm -m 512 -gdb tcp:127.0.0.1:1234 -name test -serial unix:/tmp/ece391socket
+```
+
+
 See [here](https://github.com/TakefiveInteractive/ece391ForMac/issues/6)
 
 **Special Thanks for our TA Fei Deng**
