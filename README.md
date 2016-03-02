@@ -4,7 +4,7 @@
 
 **NOTE**: This setup will help you install Qemu 1.5, which is an old & buggy version. However Qemu 1.5 is officially used by ECE391, so you may want to not update it and use this Qemu instead of Qemu from brew. To overwrite all Qemu 1.5 setting for your Final Extra, do `brew install qemu` & `brew link --overwrite qemu`
 
-We are going to rewrite this proj by **Go** for better compatibility.
+~~We are going to rewrite this proj by **Go** for better compatibility.~~
 
 (●'◡'●)ﾉ♥Buy us some DailyByte : [Venmo tk5_uiuc](https://venmo.com/tk5_uiuc)
 
